@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PruebaLivemedModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Especialidades">
+          <Key>
+            <PropertyRef Name="IdEspecialidad" />
+          </Key>
+          <Property Name="IdEspecialidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Especialidad" Type="varchar" MaxLength="50" />
+          <Property Name="Especialidad_General" Type="varchar" MaxLength="50" />
+          <Property Name="Especialidad_Anterior" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="IdPais" />
+          </Key>
+          <Property Name="IdPais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pais" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apaterno" Type="varchar" MaxLength="50" />
+          <Property Name="Amaterno" Type="varchar" MaxLength="50" />
+          <Property Name="IdEspecialidad" Type="int" />
+          <Property Name="IdEstado" Type="int" />
+          <Property Name="IdPais" Type="int" />
+        </EntityType>
+        <Association Name="FK__Usuarios__IdEspe__2A4B4B5E">
+          <End Role="Especialidades" Type="Self.Especialidades" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidades">
+              <PropertyRef Name="IdEspecialidad" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdEspecialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__IdEsta__2B3F6F97">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__IdPais__2C3393D0">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="UsuarioGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="PruebaLivemedModelStoreContainer">
+          <EntitySet Name="Especialidades" EntityType="Self.Especialidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Usuarios__IdEspe__2A4B4B5E" Association="Self.FK__Usuarios__IdEspe__2A4B4B5E">
+            <End Role="Especialidades" EntitySet="Especialidades" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__IdEsta__2B3F6F97" Association="Self.FK__Usuarios__IdEsta__2B3F6F97">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__IdPais__2C3393D0" Association="Self.FK__Usuarios__IdPais__2C3393D0">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PruebaLivemedModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Especialidades">
+          <Key>
+            <PropertyRef Name="IdEspecialidad" />
+          </Key>
+          <Property Name="IdEspecialidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Especialidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Especialidad_General" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Especialidad_Anterior" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__IdEspe__2A4B4B5E" FromRole="Especialidades" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__IdEsta__2B3F6F97" FromRole="Estados" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="IdPais" />
+          </Key>
+          <Property Name="IdPais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__IdPais__2C3393D0" FromRole="Paises" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Amaterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdEspecialidad" Type="Int32" />
+          <Property Name="IdEstado" Type="Int32" />
+          <Property Name="IdPais" Type="Int32" />
+          <NavigationProperty Name="Especialidades" Relationship="Self.FK__Usuarios__IdEspe__2A4B4B5E" FromRole="Usuarios" ToRole="Especialidades" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK__Usuarios__IdEsta__2B3F6F97" FromRole="Usuarios" ToRole="Estados" />
+          <NavigationProperty Name="Paises" Relationship="Self.FK__Usuarios__IdPais__2C3393D0" FromRole="Usuarios" ToRole="Paises" />
+        </EntityType>
+        <Association Name="FK__Usuarios__IdEspe__2A4B4B5E">
+          <End Role="Especialidades" Type="Self.Especialidades" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidades">
+              <PropertyRef Name="IdEspecialidad" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdEspecialidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__IdEsta__2B3F6F97">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__IdPais__2C3393D0">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="IdPais" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PruebaLivemedEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Especialidades" EntityType="Self.Especialidades" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK__Usuarios__IdEspe__2A4B4B5E" Association="Self.FK__Usuarios__IdEspe__2A4B4B5E">
+            <End Role="Especialidades" EntitySet="Especialidades" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__IdEsta__2B3F6F97" Association="Self.FK__Usuarios__IdEsta__2B3F6F97">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__IdPais__2C3393D0" Association="Self.FK__Usuarios__IdPais__2C3393D0">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <FunctionImport Name="UsuarioGetAll" ReturnType="Collection(PruebaLivemedModel.UsuarioGetAll_Result)" />
+        </EntityContainer>
+        <ComplexType Name="UsuarioGetAll_Result">
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Apaterno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Amaterno" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IdEspecialidad" Nullable="true" />
+          <Property Type="Int32" Name="IdEstado" Nullable="true" />
+          <Property Type="Int32" Name="IdPais" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PruebaLivemedModelStoreContainer" CdmEntityContainer="PruebaLivemedEntities">
+          <EntitySetMapping Name="Especialidades">
+            <EntityTypeMapping TypeName="PruebaLivemedModel.Especialidades">
+              <MappingFragment StoreEntitySet="Especialidades">
+                <ScalarProperty Name="IdEspecialidad" ColumnName="IdEspecialidad" />
+                <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+                <ScalarProperty Name="Especialidad_General" ColumnName="Especialidad_General" />
+                <ScalarProperty Name="Especialidad_Anterior" ColumnName="Especialidad_Anterior" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="PruebaLivemedModel.Estados">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paises">
+            <EntityTypeMapping TypeName="PruebaLivemedModel.Paises">
+              <MappingFragment StoreEntitySet="Paises">
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="PruebaLivemedModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apaterno" ColumnName="Apaterno" />
+                <ScalarProperty Name="Amaterno" ColumnName="Amaterno" />
+                <ScalarProperty Name="IdEspecialidad" ColumnName="IdEspecialidad" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UsuarioGetAll" FunctionName="PruebaLivemedModel.Store.UsuarioGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PruebaLivemedModel.UsuarioGetAll_Result">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apaterno" ColumnName="Apaterno" />
+                <ScalarProperty Name="Amaterno" ColumnName="Amaterno" />
+                <ScalarProperty Name="IdEspecialidad" ColumnName="IdEspecialidad" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
